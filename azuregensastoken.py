@@ -10,7 +10,7 @@ import string
 def generate_sas_token(uri, key, policy_name, expiry=3600):
     ttl = time() + expiry
     sign_key = "%s\n%d" % ((quote_plus(uri)), int(ttl))
-    print("Sign Key:")
+    print(" - Sign Key:")
     print (sign_key)
     signature = b64encode(HMAC(b64decode(key), sign_key, sha256).digest())
 
@@ -28,7 +28,7 @@ uri = "0ne009XXXXXXX/registrations/dps-test-device-1" # Create this uri with for
 policy_name = "registration" # Leave this value as is
 
 newsastoken = generate_sas_token(uri, key, policy_name)
-print("URI:")
+print(" - URI:")
 print(uri)
-print("The following output will be used in the Authorization Header:")
+print(" - The following output will be used in the Authorization Header:")
 print(newsastoken)
